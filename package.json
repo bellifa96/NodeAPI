@@ -1,0 +1,29 @@
+{
+  "name": "nodeapi",
+  "version": "1.0.0",
+  "description": "TP",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bellifa96/NodeAPI.git"
+  },
+  "keywords": [
+    "TP",
+    "Node"
+  ],
+  "author": "bellifa oussama abdel-illah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bellifa96/NodeAPI/issues"
+  },
+  "homepage": "https://github.com/bellifa96/NodeAPI#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.2"
+  }
+}
