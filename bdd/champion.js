@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const category = require("./category")
 
-const ChampionSchema = mongoose.Schema({
+const championSchema = mongoose.Schema({
     nom : String,
     region : String,
     sortUltime : String,
@@ -9,4 +9,4 @@ const ChampionSchema = mongoose.Schema({
     category:{type: mongoose.Schema.Types.ObjectId,ref:category}
 })
 
-module.exports = mongoose.model("champion", ChampionSchema)
+module.exports = mongoose.model("Champion", championSchema)
