@@ -52,13 +52,9 @@ app.get("/api/champion/:id", function (req, res) {
 /************** champion CRUD *********/
 
 
-app.get("/api/add/champion", async function (req, res) {
-
-    res.status(200).json({id: datas["_id"]})
-})
-
 app.post("/api/add/champion", async function (req, res) {
     const {nom, region, sortUltime, image,category} = req.body
+    console.log(req.body)
     const datas = await Champion.create({
         nom,
         region,
@@ -119,7 +115,7 @@ app.delete("/api/category/:id", async function (req, res) {
     })
 })
 
-app.get("/api/category", async function (req, res) {
+app.get("/api/category/list", async function (req, res) {
     Category.find({}, function (err, categories) {
         res.status(200).json(categories)
     })
