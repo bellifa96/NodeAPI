@@ -1,23 +1,28 @@
+
+const uniqid = require("uniqid")
 const express = require("express")
 const app = express()
 const cors = require("cors")
 const mongoose = require("mongoose")
 const Champion = require("./bdd/champion")
 const Category = require("./bdd/category")
-
 const bodyParser = require("body-parser")
+const fs = require('fs');
 
 
 const MongoClient = require('mongodb').MongoClient;
 const uri = 'mongodb://localhost:27017/apiLOL';
 const db = mongoose.connect(uri,{useNewUrlParser:true});
 
+const fileupload = require("express-fileupload");
 
 console.log(db)
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
+app.use(fileupload());
+app.use(express.static("public"));
 
 
 app.get("/api", function (req, res) {
@@ -52,9 +57,18 @@ app.get("/api/champion/:id", function (req, res) {
 /************** champion CRUD *********/
 
 
-app.post("/api/add/champion", async function (req, res) {
-    const {nom, region, sortUltime, image,category} = req.body
-    console.log(req.body)
+app.post("/api/add/champion",async function (req, res) {
+    const newpath = __dirname + "/public/";
+    const file = req.files.image;
+    const filename = uniqid()+"-"+file.name;
+    file.mv(`${newpath}${filename}`, (err) => {
+        if (err) {
+            res.status(500).send({ message: "File upload failed", code: 200 });
+        }
+    });
+    const {nom, region, sortUltime,category} = req.body
+    const image = filename
+
     const datas = await Champion.create({
         nom,
         region,
